@@ -53,7 +53,7 @@ Do not assume. When in doubt, ask.
 
 ## Versioning & Tagging
 
-All projects follow [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`). Tags are created automatically on merge to `main` via `.github/workflows/auto-tag.yml`.
+All projects follow [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`). Tags are bare version numbers with **no `v` prefix** (e.g., `1.0.0`, not `v1.0.0`). Tags are created automatically on merge to `main` via `.github/workflows/auto-tag.yml`.
 
 ### Before Merging a PR
 

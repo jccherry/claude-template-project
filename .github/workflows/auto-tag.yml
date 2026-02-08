@@ -20,12 +20,12 @@ jobs:
       - name: Get latest tag
         id: latest_tag
         run: |
-          # Find the latest semver tag, default to 0.0.0 if none exist
-          LATEST=$(git tag --list 'v*' --sort=-version:refname | head -n 1)
+          # Find the latest semver tag (no v prefix), default to 0.0.0 if none exist
+          LATEST=$(git tag --list '[0-9]*.[0-9]*.[0-9]*' --sort=-version:refname | head -n 1)
           if [ -z "$LATEST" ]; then
             echo "version=0.0.0" >> "$GITHUB_OUTPUT"
           else
-            echo "version=${LATEST#v}" >> "$GITHUB_OUTPUT"
+            echo "version=${LATEST}" >> "$GITHUB_OUTPUT"
           fi
           echo "Latest tag: ${LATEST:-none}"
 
@@ -69,6 +69,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -a "v${NEW_VERSION}" -m "v${NEW_VERSION}: ${PR_TITLE} (#${PR_NUMBER})"
-          git push origin "v${NEW_VERSION}"
-          echo "✅ Tagged v${NEW_VERSION}"
+          git tag -a "${NEW_VERSION}" -m "${NEW_VERSION}: ${PR_TITLE} (#${PR_NUMBER})"
+          git push origin "${NEW_VERSION}"
+          echo "✅ Tagged ${NEW_VERSION}"
