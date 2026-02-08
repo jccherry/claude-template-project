@@ -51,6 +51,29 @@ Do not assume. When in doubt, ask.
 - CI must pass before merging to `main`.
 - Keep CI configuration in `.github/workflows/`.
 
+## Versioning & Tagging
+
+All projects follow [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`). Tags are created automatically on merge to `main` via `.github/workflows/auto-tag.yml`.
+
+### Before Merging a PR
+
+Claude must assess the version bump type and confirm with the user:
+
+1. **Review all changes** in the PR (commits, files changed, scope of impact).
+2. **Propose a version bump** using these criteria:
+   - **Major** (`X.0.0`) — Breaking changes: removed/renamed public APIs, changed behavior that existing consumers depend on, incompatible schema migrations, dropped support for a platform/runtime.
+   - **Minor** (`x.Y.0`) — New functionality added in a backward-compatible way: new endpoints, new features, new optional config, new UI pages/components.
+   - **Patch** (`x.y.Z`) — Backward-compatible fixes: bug fixes, performance improvements, dependency updates, typo fixes, doc-only changes, refactors with no behavior change.
+3. **Explain the reasoning** — Briefly state why the bump type applies.
+4. **Ask the user to confirm** — Do not apply the label without explicit approval.
+5. **Apply the label** — Add `semver:major`, `semver:minor`, or `semver:patch` to the PR before merging.
+
+If no label is applied, the workflow defaults to a patch bump.
+
+### Example
+
+> This PR adds a new `/api/v1/reports` endpoint with query filtering. No existing endpoints were changed. I'd classify this as a **minor** version bump (new backward-compatible feature). The version would go from `1.2.3` → `1.3.0`. Does that look right?
+
 ## README Standards
 
 Every project README should include:

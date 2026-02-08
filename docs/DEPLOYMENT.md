@@ -44,12 +44,25 @@
 <!-- Describe the infrastructure: servers, containers, load balancers, CDN, DNS. -->
 <!-- Link to IaC (Terraform, Pulumi, CloudFormation) if applicable. -->
 
+## Versioning
+
+This project uses [Semantic Versioning](https://semver.org/). Tags are created automatically when PRs are merged to `main`.
+
+| Label | Bump | Example |
+|-------|------|---------|
+| `semver:major` | Breaking change | `1.2.3` → `2.0.0` |
+| `semver:minor` | New feature | `1.2.3` → `1.3.0` |
+| `semver:patch` | Bug fix / chore | `1.2.3` → `1.2.4` |
+| No label | Defaults to patch | `1.2.3` → `1.2.4` |
+
+The auto-tagging workflow lives at `.github/workflows/auto-tag.yml`.
+
 ## CI/CD Pipeline
 
 <!-- Describe the CI/CD flow from commit to production. -->
 
 ```
-push → lint → test → build → deploy
+push → lint → test → build → merge → auto-tag → deploy
 ```
 
 ## Environment Variables

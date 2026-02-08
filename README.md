@@ -7,6 +7,7 @@ A starter template for projects built with Claude Code. Includes structured docu
 - **`CLAUDE.md`** — Session instructions for Claude Code (branching, docs, testing, planning)
 - **`docs/`** — Documentation templates: `FRONTEND.md`, `BACKEND.md`, `DATABASE.md`, `DEPLOYMENT.md`, `TESTS.md`
 - **`.github/workflows/ci.yml`** — GitHub Actions CI scaffold
+- **`.github/workflows/auto-tag.yml`** — Auto-creates semver tags on merge to `main`
 - **`.gitignore`** — Reasonable defaults for common stacks
 
 ## Using This Template
@@ -72,6 +73,17 @@ The included GitHub Actions workflow (`.github/workflows/ci.yml`) is a scaffold.
 # .github/workflows/ci.yml runs on every push and PR to main
 # Edit the build, lint, and test steps to match your stack
 ```
+
+## Auto Tagging
+
+Every merge to `main` automatically creates a semver git tag via `.github/workflows/auto-tag.yml`.
+
+**How it works:**
+1. Add a label to your PR before merging: `semver:major`, `semver:minor`, or `semver:patch`
+2. On merge, the workflow reads the label, bumps the version, and pushes a new tag
+3. If no label is present, it defaults to a patch bump
+
+Claude Code sessions are instructed (via `CLAUDE.md`) to assess the appropriate version bump and confirm with the user before labeling.
 
 ## README Template
 
