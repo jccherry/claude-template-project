@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    # Uncomment and configure the matrix for your stack:
+    # strategy:
+    #   matrix:
+    #     node-version: [18.x, 20.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # --- Node.js example ---
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      #     cache: 'npm'
+      # - run: npm ci
+      # - run: npm run lint
+      # - run: npm test
+
+      # --- Python example ---
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.12'
+      # - run: pip install -r requirements.txt
+      # - run: python -m pytest
+
+      # --- Go example ---
+      # - uses: actions/setup-go@v5
+      #   with:
+      #     go-version: '1.22'
+      # - run: go build ./...
+      # - run: go test ./...
+
+      # Placeholder step — replace with your actual commands
+      - name: Template placeholder
+        run: echo "Update ci.yml with your project's build, lint, and test commands."
